@@ -16,7 +16,6 @@ def funcao(cidade):
   print(f'A média de idades dos obitos vitimas do covid é: {media:.2f}')
   print(f'A MAIOR IDADE das vitimas do covid é {max(idades)}')
 
-
 #  0         1      2       3         4          5
 #Genero - idade - data - cidade - raça/cor - comorbidades
 cidades = []
@@ -82,10 +81,29 @@ def mortosSemComorbidades():
   # print(f'- = {comComorbidade.count("-")}')
 
 
+#Qual a comorbidade mais predominante na cidade de Santa Inês 
+def comorbidadePredominanteSantaInes(cidade):
+  for row in arquivo.readlines():
+    dados = row.split(';')
+    if dados[3] == cidade:
+      comorbidade = dados[5]
+      if comorbidade not in comorbidades:
+        comorbidades.append(comorbidade)
+      if comorbidade == 'SEM COMORBIDADE':
+        semComorbidade.append(comorbidade)
+      else:
+        comComorbidade.append(comorbidade);
+  for i in comorbidades:
+    print(f'{i} = {comComorbidade.count(f"{i}")}')
+  print(f'Existe {len(comComorbidade)} óbitos com comorbidades em Santa Inês')
+  print(f'Existe {len(semComorbidade)} óbitos sem comorbidades em Santa Inês')
+      
+
 if __name__ == '__main__':
   #date()
   #funcao('COROATÁ')
   #listCidades()
   #separaGenero()
-  mortosSemComorbidades()
+  #mortosSemComorbidades()
+  comorbidadePredominanteSantaInes('SANTA INÊS')
   
