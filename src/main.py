@@ -19,6 +19,22 @@ def funcao(cidade):
 #  0         1      2       3         4          5
 #Genero - idade - data - cidade - raça/cor - comorbidades
 cidades = []
+
+def listDados():
+  for row in arquivo.readlines():
+    dados = row.split(';')
+    genero = dados[0]
+    idade = dados[1]
+
+  return genero, idade
+
+def listMediaGenero(posicao, sexo):
+  posicao = genero
+  sexo = input
+
+  print('MAsculino e feminino')
+
+
 def listCidades():
   for row in arquivo.readlines():
     dados = row.split(';')
@@ -50,10 +66,13 @@ semComorbidade = []
 comComorbidade = []
 comorbidades = []
 #Qual o número de óbitos sem comorbidades?
+
 def mortosSemComorbidades():
+  
   for row in arquivo.readlines():
     dados = row.split(';')
-    comorbidade = dados[5]
+    comorbidade = dados[5:]
+    print(comorbidade)
     #['HIPERTENSÃO ARTERIAL', 'CARDIOPATIA',
     # 'SEM COMORBIDADE', 'OBESIDADE',
     # 'DOENÇA RENAL CRÔNICA', 'DIABETES MELLITUS',
@@ -65,6 +84,9 @@ def mortosSemComorbidades():
       semComorbidade.append(comorbidade)
     else:
       comComorbidade.append(comorbidade);
+    if count == 10:
+      break
+      count += 1
 
   for i in comorbidades:
     print(f'{i} = {comComorbidade.count(f"{i}")}')
@@ -98,12 +120,11 @@ def comorbidadePredominanteSantaInes(cidade):
   print(f'Existe {len(comComorbidade)} óbitos com comorbidades em Santa Inês')
   print(f'Existe {len(semComorbidade)} óbitos sem comorbidades em Santa Inês')
       
-
 if __name__ == '__main__':
   #date()
   #funcao('COROATÁ')
   #listCidades()
   #separaGenero()
-  #mortosSemComorbidades()
-  comorbidadePredominanteSantaInes('SANTA INÊS')
+  mortosSemComorbidades()
+  #comorbidadePredominanteSantaInes('SANTA INÊS')
   
