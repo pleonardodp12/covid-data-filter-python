@@ -15,6 +15,8 @@ def tratarDado(dados):
         print(f'Quantidade mulheres: {femin}')
         print(f'Por proporção de casos, homens: {(masc/len(dados))*100 :.2f} %')
         print(f'Por proporção de casos, mulheres: {(femin/len(dados))*100 :.2f} %')
+        print(20*'-')
+        print('Comorbidades totais: ')
     except:
         print('CASO TODOS OS VALORES ESTEJAM ZERADOS, O NOME PODE ESTÁ ERRADO OU NÃO POSSUI ÓBITOS NA CIDADE DEVIDO A COVID19')
     #Quantidade por doenças
@@ -25,12 +27,14 @@ def tratarDado(dados):
     for x in comorbidades:
         if x in lista_doenca.keys():
             lista_doenca[x] += 1
-    print(20*'-')
-    print('Comorbidades totais: ')
+    
     for index, valor in lista_doenca.items():
         print(f'{index.title()}: {valor} caso(s)')
 
+
+
 #----------------------
+
 def city():
     nome_city = input('Digite o nome da cidade: ').upper()
     dado = obito_ma()
@@ -43,7 +47,7 @@ def idade(args):
     dados = city()
     drop_menu = '''
     Digite: 
-    [1] - Idade por intervalo de tempo
+    [1] - Idade por intervalo
     [2 ou outro valor] - Idade específica
     '''
     print(drop_menu)
@@ -77,13 +81,13 @@ def age_ret(args):
     if len(args) >0:
         for x in args:
             print(f'Sexo: {x[0]}; Idade: {x[1]}; Data obito: {x[2]}; Comorbidades: {", ".join(x[5:])}')
+        print(f'O total de {len(args)}')
     else:
         print('Não possui dados para o valor informado') 
 
 #--------------------------------------------------------------------------------
 
 def gender(args):
-
     def gender_dados(dados):
         select_gender = input('Digite o gênero: ').upper()
         genero = [genero for genero in dados if genero[0] == select_gender]
@@ -93,6 +97,29 @@ def gender(args):
         dados = city()
         age_ret(gender_dados(dados))
 
-    elif args == '4':
+    elif args == '4' or '6':
         dados = idade('4')
-        age_ret(gender_dados(dados))
+        if args == '4':
+            return age_ret(gender_dados(dados))
+        return gender_dados(dados)
+    
+def comorbidades(args):
+    def comorbid(dados, args):
+        comor = []
+        for x in dados:
+            comor.extend(x[5:])
+        comor_entrada = input('Digite o nome da comorbidade: ')
+        comorbidades = [comorb for comorb in dados if comor_entrada in comorb ]
+        if args == '5':
+            return age_ret(comorbidades)
+        return comorbidades
+
+    if args == '5':
+        comorbid(city(), '5')
+        
+    elif args == '6':
+        print(comorbid(gender('6'),'6'))
+        
+
+def meses(args):
+    return

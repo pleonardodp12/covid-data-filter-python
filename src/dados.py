@@ -1,3 +1,4 @@
+
 """ Obtendo dados de casos por cidade"""
 def case_c19_ma():
     dado_covid19 = open("./files_data/covid19_ma.csv", encoding="utf-8")
@@ -24,4 +25,11 @@ def obito_ma():
             dados.remove("-")
         dados.pop()
         obito_ma.append(dados)
-    return 
+    return obito_ma
+
+
+
+
+
+
+
