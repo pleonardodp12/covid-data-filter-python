@@ -1,4 +1,3 @@
-
 """ Obtendo dados de casos por cidade"""
 def case_c19_ma():
     dado_covid19 = open("./files_data/covid19_ma.csv", encoding="utf-8")
@@ -25,21 +24,4 @@ def obito_ma():
             dados.remove("-")
         dados.pop()
         obito_ma.append(dados)
-    return obito_ma
-
-   
-'''
-obitos  = obito_ma(*dado_obito_covid19)
-
-SEM COMORBIDADE
-'''
-'''
-
-count = 0
-count2 = 0
-for x in obitos:
-    if 'SEM COMORBIDADE' in x:
-        count2 += 1
-'''
-#b = input('Doença: ')
-#a = len([numero for numero in obitos if b in numero])
+    return 
