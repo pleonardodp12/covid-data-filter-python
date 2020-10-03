@@ -14,7 +14,6 @@ def menu():
     escolha = int(input("Escolha: "))
 
     if escolha == 3:
-
         async def main():
             print("Finalizando...")
             await asyncio.sleep(2)

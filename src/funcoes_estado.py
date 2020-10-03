@@ -74,7 +74,7 @@ def age_ret(args):
     if len(args) >0:
         for x in args:
             print(f'Sexo: {x[0]}; Idade: {x[1]}; Data obito: {x[2]}; Cidade: {x[3]}; Comorbidades: {", ".join(x[5:])}')
-        print(20*'-')
+        print(50*'-')
         print(f'Total de pessoas {len(args)}')
     else:
         print('Não possui dados para o valor informado') 
@@ -117,18 +117,27 @@ def comorbidades_estado(args):
 
 def datetimeSearch(args):
     def searchMouth(dados, args):
-        meses = ('janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro')
-        select_mes = input('Digite o mes: ').upper()
-        mes = [mes for mes in dados if mes[2].split('/')[1] == select_mes]
-        # if select_mes == meses[0:2]: #'janeiro'or 'fevereiro'
-        #     return print('não tivemos casos constatados no mês de janeiro e fevereiro de 2020')
-        # elif select_mes == meses[9:11]: #'outubro' or 'novembro' or 'dezembro'
-        #     return print('Meses com casos ainda não registrados')
-        # else:
-        #     return print(f'Tivemos {len(mes)} casos registrado no mês')
+        #meses = ('janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro')
+        #select_mes = input('Digite o mes: ').upper()
+        #select_mes_changed = index()
+        #mes = [mes for mes in dados if mes[2].split('/')[1] == select_mes]
+
+        meses = {'janeiro': '01', 'fevereiro': '02', 'março': '03', 'abril': '04', 'maio': '05', 'junho': '06', 'julho': '07',
+        'agosto': '08', 'setembro': '09', 'outubro': '10', 'novembro': '11', 'dezembro': '12'}
+        select_mes = input('Digite o mes: ')
+
+        mes = [mes for mes in dados if mes[2].split('/')[1] == meses[select_mes]]
+
+        if len(mes) == 0:
+            return print(f'não tivemos casos constatados no mês de {select_mes} ')
+        else:
+            return print(f'Tivemos {len(mes)} casos registrado no mês')
         
-        print(f'Tivemos essa quantidade de óbitos: {len(mes)}, no mês {select_mes}')
-        print(f'Mês 4 é: {meses[4]}')
+        if len(mes) == 0:
+            print(f'não tivemos casos constatados no mês de {select_mes} ')
+        else:
+            print(f'Tivemos {len(mes)} casos registrado no {select_mes}')
+        
         return mes
 
     if args == '5':
